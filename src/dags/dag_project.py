@@ -100,10 +100,10 @@ def project6_dag():
                     event_dt TIMESTAMP, \
                     load_dt TIMESTAMP, \
                     load_src VARCHAR(20)) \
-                    order by load_dt \
+                    order by event_dt \
                     segmented by hk_l_user_group_activity all nodes \
-                    partition by load_dt::date \
-                    group by calendar_hierarchy_day(load_dt::date, 3, 2)"}
+                    partition by event_dt::date \
+                    group by calendar_hierarchy_day(event_dt::date, 3, 2)"}
     )
     insert2table_s_auth_history = PythonOperator(
         task_id = 'insert2table_s_auth_history',
