@@ -24,8 +24,9 @@ conn_info = {
     'autocommit': True
 }
 
+session = boto3.session.Session()
+
 def fetch_s3_file(bucket: str, key: str):
-    session = boto3.session.Session()
     s3_client = session.client(
         service_name = 's3',
         endpoint_url = 'https://storage.yandexcloud.net',
